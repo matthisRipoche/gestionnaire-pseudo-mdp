@@ -38,6 +38,7 @@ while isClose == False:
 
             if userPseudo == "":
                 print("le pseudo est vide")
+                isPseudoOk = False
             else:
                 for i in data:
                     if userPseudo == i['pseudo']:
