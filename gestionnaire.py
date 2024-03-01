@@ -27,10 +27,25 @@ def Inscription():
     userPseudo = ""
     userMdp = ""
 
+
 def Connexion():
     print("choix 2")
-    userPseudo = input("rentrez votre pseudo : ")
-    userMdp = input("rentrez votre mot de passe : ")
+    isIdentifyOK = False
+    while isIdentifyOK == False:
+        userPseudo = input("rentrez votre pseudo : ")
+        userMdp = input("rentrez votre mot de passe : ")
+        if userPseudo == "" or userMdp == "":
+            print("Veuillez rentrer les informations nécessaires !")
+            isIdentifyOK == False
+        else:
+            for i in data:
+                if userPseudo == i['pseudo'] and userMdp == i['mot_de_passe']:
+                    isIdentifyOK = True
+            if isIdentifyOK == False:
+                print("Mauvais Identifiants !")
+            elif isIdentifyOK == True:
+                input("Bienvenue " + userPseudo + ", appuie sur entrer pour revenir au menu ! :)")
+
 
 
 while isClose == False:
@@ -63,7 +78,6 @@ while isClose == False:
     #connexion
     elif userChoiseMenu == 2:
         Connexion()
-
 
     elif userChoiseMenu == 3:
         print("choix 3")
