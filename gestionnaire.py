@@ -2,7 +2,36 @@ import csv
 import os
 
 isClose = False
-isPseudoOk = False
+
+def Inscription():
+    print("choix 1")
+    #entrée pseudo + verif si le pseudo est déja utilisé
+    isPseudoOk = False
+    while isPseudoOk == False:
+        userPseudo = input("rentrez votre pseudo : ")
+        if userPseudo == "":
+            print("le pseudo est vide")
+            isPseudoOk = False
+        else:
+            for i in data:
+                if userPseudo == i['pseudo']:
+                    print("Ce pseudo est déjà pris !")
+                    isPseudoOk = False
+                    break
+                else:
+                    isPseudoOk = True
+    userMdp = input("rentrez votre mot de passe : ")
+    with open('data.csv', 'a') as file:
+        writer = csv.DictWriter(file, delimiter=',', fieldnames = ['pseudo', 'mot_de_passe'], )
+        writer.writerow({'pseudo': userPseudo, 'mot_de_passe': userMdp})
+    userPseudo = ""
+    userMdp = ""
+
+def Connexion():
+    print("choix 2")
+    userPseudo = input("rentrez votre pseudo : ")
+    userMdp = input("rentrez votre mot de passe : ")
+
 
 while isClose == False:
 
@@ -29,38 +58,11 @@ while isClose == False:
 
     #inscription
     if userChoiseMenu == 1:
-        print("choix 1")
-
-        #entrée pseudo + verif si le pseudo est déja utilisé
-        while isPseudoOk == False:
-
-            userPseudo = input("rentrez votre pseudo : ")
-
-            if userPseudo == "":
-                print("le pseudo est vide")
-                isPseudoOk = False
-            else:
-                for i in data:
-                    if userPseudo == i['pseudo']:
-                        print("Ce pseudo existe déjà !")
-                        isPseudoOk = False
-                        break
-                    else:
-                        isPseudoOk = True
-
-
-
-        userMdp = input("rentrez votre mot de passe : ")
-
-        with open('data.csv', 'a') as file:
-            writer = csv.DictWriter(file, delimiter=',', fieldnames = ['pseudo', 'mot_de_passe'], )
-            writer.writerow({'pseudo': userPseudo, 'mot_de_passe': userMdp})
-        userPseudo = ""
-        userMdp = ""
+        Inscription()
 
     #connexion
     elif userChoiseMenu == 2:
-        print("choix 2")
+        Connexion()
 
 
     elif userChoiseMenu == 3:
