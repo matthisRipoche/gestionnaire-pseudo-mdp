@@ -3,11 +3,24 @@ import os
 
 isClose = False
 
+def dataShow():
+    print("=================================")
+    print("DATA :")
+    data = []
+    with open('data.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            data.append(row)
+        for row in data:
+            print(row['pseudo'], row['mot_de_passe'])
+    return data
+
 def Inscription():
     print("choix 1")
     #entrée pseudo + verif si le pseudo est déja utilisé
     isPseudoOk = False
     while isPseudoOk == False:
+        isPseudoOk = True
         userPseudo = input("rentrez votre pseudo : ")
         if userPseudo == "":
             print("le pseudo est vide")
@@ -20,13 +33,11 @@ def Inscription():
                     break
                 else:
                     isPseudoOk = True
+            
     userMdp = input("rentrez votre mot de passe : ")
     with open('data.csv', 'a') as file:
         writer = csv.DictWriter(file, delimiter=',', fieldnames = ['pseudo', 'mot_de_passe'], )
         writer.writerow({'pseudo': userPseudo, 'mot_de_passe': userMdp})
-    userPseudo = ""
-    userMdp = ""
-
 
 def Connexion():
     print("choix 2")
@@ -46,22 +57,10 @@ def Connexion():
             elif isIdentifyOK == True:
                 input("Bienvenue " + userPseudo + ", appuie sur entrer pour revenir au menu ! :)")
 
-
-
 while isClose == False:
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    #initialiser la data
-    print("=================================")
-    print("DATA :")
-    data = []
-    with open('data.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            data.append(row)
-        for row in data:
-            print(row['pseudo'], row['mot_de_passe'])
-
+    data = dataShow() #initialiser la data
 
     #ouverture du menu
     print("=================================")
@@ -81,13 +80,7 @@ while isClose == False:
         Connexion()
 
     elif userChoiseMenu == 3:
-        print("choix 3")
-
-        with open('data.csv', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            print("Voici la base de donnée : \n")
-            for row in reader:
-                print(row['pseudo'], row['mot_de_passe'])
+        input("choix 3")
 
     #option
     elif userChoiseMenu == 4:
