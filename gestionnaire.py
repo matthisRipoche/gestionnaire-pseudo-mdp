@@ -49,6 +49,7 @@ def Connexion():
 
 
 while isClose == False:
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     #initialiser la data
     print("=================================")
@@ -97,5 +98,3 @@ while isClose == False:
     #quitter
     else:
         print("Error veuillez rentrer un chiffre valide!")
-
-    os.system('cls' if os.name == 'nt' else 'clear')
