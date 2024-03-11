@@ -82,10 +82,12 @@ def Option(data):
             else:
                 for i in data:
                     if nameToDelete == i['pseudo']:
-                        mdpToEnter = i['mot_de_passe']
-                mdpTry = input("rentrez le mot de passe de ce compte")
-                if mdpTry == mdpToEnter:
-                    
+                        mdpTry = input("rentrez le mot de passe de ce compte")
+                        if mdpTry == i['mot_de_passe']:
+                            with open('data.csv', newline='') as csvfile:
+                                
+
+
                     
 
 
