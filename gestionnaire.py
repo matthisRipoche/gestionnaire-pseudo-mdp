@@ -2,6 +2,7 @@ import csv
 import os
 
 isClose = False
+isOptionClose = True
 
 def dataShow():
     print("=================================")
@@ -57,6 +58,44 @@ def Connexion():
             elif isIdentifyOK == True:
                 input("Bienvenue " + userPseudo + ", appuie sur entrer pour revenir au menu ! :)")
 
+def Option(data):
+    print("choix 3 saisie")
+    isOptionClose = False
+    while isOptionClose == False:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("=================================")
+        print("DATA :")
+        for row in data:
+            print(row['pseudo'], row['mot_de_passe'])
+        #ouverture du menu
+        print("=================================")
+        print("1. Supprimer un compte")
+        print("2. Retour")
+        
+        userChoiseOption = int(input(""))
+        if userChoiseOption == 1:
+            ("choix 1")
+            isIdentifyOK = False
+            nameToDelete = input("quel nom voulez vous supprimer? ")
+            if nameToDelete == "":
+                ("rentrez un nom!")
+            else:
+                for i in data:
+                    if nameToDelete == i['pseudo']:
+                        mdpToEnter = i['mot_de_passe']
+                mdpTry = input("rentrez le mot de passe de ce compte")
+                if mdpTry == mdpToEnter:
+                    
+                    
+
+
+
+            isOptionClose = True
+        elif userChoiseOption == 2:
+            isOptionClose = True
+
+
+
 while isClose == False:
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -80,7 +119,7 @@ while isClose == False:
         Connexion()
 
     elif userChoiseMenu == 3:
-        input("choix 3")
+        Option(data)
 
     #option
     elif userChoiseMenu == 4:
